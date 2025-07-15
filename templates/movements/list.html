@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Material Movements - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Material Movements</h1>
+    <a href="{{ url_for('add_movement') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Movement
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Material ID</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>From Store</th>
+                <th>To Store</th>
+                <th>Reference No</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in movements %}
+            <tr>
+                <td>{{ movement.material_id }}</td>
+                <td>
+                    <span class="badge bg-{{ 'success' if movement.movement_type == 'IN' else 'danger' }}">
+                        {{ movement.movement_type }}
+                    </span>
+                </td>
+                <td>{{ movement.quantity }}</td>
+                <td>{{ movement.from_store or '-' }}</td>
+                <td>{{ movement.to_store or '-' }}</td>
+                <td>{{ movement.reference_no }}</td>
+                <td>{{ movement.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

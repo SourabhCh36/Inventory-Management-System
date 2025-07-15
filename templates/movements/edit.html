@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Movement - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Edit Movement</h1>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label for="movement_id" class="form-label">Movement ID</label>
+                <input type="text" class="form-control" id="movement_id" name="movement_id" value="{{ movement.movement_id }}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="material_id" class="form-label">Material Id</label>
+                <input type="text" class="form-control" id="material_id" name="material_id" value="{{ movement.material_id }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="store_id" class="form-label">Store ID</label>
+                <input type="text" class="form-control" id="store_id" name="store_id" value="{{ movement.store_id }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ movement.quantity }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="movement_type" class="form-label">Movement Type</label>
+                <input type="text" class="form-control" id="movement_type" name="movement_type" value="{{ movement.movement_type }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="movement_date" class="form-label">Movement Date</label>
+                <input type="date" class="form-control" id="movement_date" name="movement_date" value="{{ movement.movement_date.strftime('%Y-%m-%d') }}" required>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update Movement</button>
+                <a href="{{ url_for('view_movements') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

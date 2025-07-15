@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Material - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Edit Material</h1>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label for="material_id" class="form-label">Material Id</label>
+                <input type="text" class="form-control" id="material_code" name="material_code" value="{{ material.material_code }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="material_name" class="form-label">Material Name</label>
+                <input type="text" class="form-control" id="material_name" name="material_name" value="{{ material.material_name }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ material.description }}</textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="unit" class="form-label">Unit</label>
+                <input type="text" class="form-control" id="unit" name="unit" value="{{ material.unit }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input type="text" class="form-control" id="category" name="category" value="{{ material.category }}">
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update Material</button>
+                <a href="{{ url_for('materials') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
