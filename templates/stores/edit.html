@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Store - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h1>Edit Store</h1>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="store_id" class="form-label">Store ID</label>
+                <input type="text" class="form-control" id="store_id" name="store_id" value="{{ store.store_id }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="store_name" class="form-label">Store Name</label>
+                <input type="text" class="form-control" id="store_name" name="store_name" value="{{ store.store_name }}" required>
+            </div>
+
+            <div class="mb=3"> 
+                <label for="locaation" class="form-label"> Location</label>
+                <input type="text" class="form-control" id="location" name="location" value="{{ store.location }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="store_head" class="form-label">Store Head</label>
+                <input type="text" class="form-control" id="store_head" name="store_head" value="{{ store.store_head }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="created_at" class="form-label">Created At</label>
+                <input type="date" class="form-control" id="created_at" name="created_at" value="{{ store.created_at.strftime('%Y-%m-%d')  }}" min="{{ current_date }}"  required>
+            </div>
+
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Update Store</button>
+                <a href="{{ url_for('stores') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

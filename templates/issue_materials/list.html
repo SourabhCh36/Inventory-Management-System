@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Issue Indents - Inventory Management System{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Issue Indents</h1>
+    <a href="{{url_for('add_issues') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i>Add Issue Indent
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Issue ID</th>
+                <th>Material ID</th>
+                <th>Requested By</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in issues %}
+            <tr>
+                <td>{{ issue.issue_id }}</td>
+                <td>{{ issue.material_id }}</td>
+                <td>{{ issue.issued_to }}</td>
+                <td>{{ issue.issue_date }}</td>
+                <td>{{ issue.quantity }}</td>
+                <td>{{ issue.remarks }}</td>
+                <td>
+                    <a href="{{ url_for('edit_issue',issue_id=issue.issue_id) }}"class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ url_for('delete_issue',issue_id=issue.issue_id) }}"class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

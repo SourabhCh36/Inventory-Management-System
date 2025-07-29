@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Add User - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Add User</h1>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="material_user">Material User</option>
+                    <option value="movement_user">Movement User</option>
+                    <option value="purchase_user">Purchase User</option>
+                    <option value="indent_user">Indent User</option>
+                    <option value="vendor_user">Vendor User</option>
+                    <option value="store_user">Store User</option>
+                    <option value="stock_user">Stock User</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add User</button>
+                <a href="{{ url_for('users') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

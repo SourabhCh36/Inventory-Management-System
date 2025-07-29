@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Issue Indent - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Edit Issue Indent</h1>
+        
+        <form method="POST">
+            
+            <div class="mb-3">
+                <label for="material_id" class="form-label">Material</label>
+                <select class="form-select" id="material_id" name="material_id" required>
+                    {% for material in materials %}
+                    <option value="{{ material.material_id }}"
+                        {% if material.material_id == issue.material_id %}selected{% endif %}>
+                        {{ material.material_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ issue.quantity }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <select class="form-select" id="remarks" name="remarks" required>
+                    <option value="PENDING" {% if issue.remarks == "PENDING" %}selected{% endif %}>PENDING</option>
+                    <option value="APPROVED" {% if issue.remarks == "APPROVED" %}selected{% endif %}>APPROVED</option>
+                    <option value="ISSUED" {% if issue.remarks == "ISSUED" %}selected{% endif %}>ISSUED</option>
+                    <option value="CANCELLED" {% if issue.remarks == "CANCELLED" %}selected{% endif %}>CANCELLED</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="issued_to" class="form-label">Issued To</label>
+                <input type="text" class="form-control" id="issued_to" name="issued_to" value="{{ issue.issued_to }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="issue_date" class="form-label">Issue Date</label>
+                <input type="date" class="form-control" id="issue_date" name="issue_date" value="{{ issue.issue_date.strftime('%Y-%m-%d') }}" min="{{ current_date }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ url_for('issue_materials') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

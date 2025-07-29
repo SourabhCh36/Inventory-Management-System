@@ -51,7 +51,7 @@
             <div class="card-body">
                 <h5 class="card-title"><i class="fas fa-file-alt"></i> Issue Indents</h5>
                 <p class="card-text">Manage material issue indents</p>
-                <a href="{{ url_for('issue_indents') }}" class="btn btn-primary">View Issue Indents</a>
+                <a href="{{ url_for('issue_materials') }}" class="btn btn-primary">View Issue Indents</a>
             </div>
         </div>
     </div>
@@ -75,7 +75,19 @@
             <div class="card-body">
                 <h5 class="card-title"><i class="fas fa-chart-bar"></i> Stock</h5>
                 <p class="card-text">View stock levels</p>
-                <a href="{{ url_for('stock') }}" class="btn btn-primary">View Stock</a>
+                <a href="{{ url_for('stocks') }}" class="btn btn-primary">View Stock</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+     {% if session.role == 'admin' or session.role == 'vendor_user' %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-chart-bar"></i> Vendor</h5>
+                <p class="card-text">Manage vendor information </p>
+                <a href="{{ url_for('vendors') }}" class="btn btn-primary">View Vendors</a>
             </div>
         </div>
     </div>

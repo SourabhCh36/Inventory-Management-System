@@ -8,11 +8,7 @@
         <h1>Edit Material</h1>
         
         <form method="POST">
-            <div class="mb-3">
-                <label for="material_id" class="form-label">Material Id</label>
-                <input type="text" class="form-control" id="material_code" name="material_code" value="{{ material.material_code }}" required>
-            </div>
-            
+         
             <div class="mb-3">
                 <label for="material_name" class="form-label">Material Name</label>
                 <input type="text" class="form-control" id="material_name" name="material_name" value="{{ material.material_name }}" required>
@@ -20,12 +16,12 @@
             
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ material.description }}</textarea>
+                <input type="textarea" class="form-control" id="description" name="description" rows="3">{{ material.description }}</textarea>
             </div>
             
             <div class="mb-3">
-                <label for="unit" class="form-label">Unit</label>
-                <input type="text" class="form-control" id="unit" name="unit" value="{{ material.unit }}" required>
+                <label for="unit_of_measure" class="form-label">Unit Of Measure</label>
+                <input type="text" class="form-control" id="unit_of_measure" name="unit_of_measure" value="{{ material.unit }}" required>
             </div>
             
             <div class="mb-3">
@@ -33,6 +29,14 @@
                 <input type="text" class="form-control" id="category" name="category" value="{{ material.category }}">
             </div>
             
+            <div class="mb-3">
+                <label for="price_per_unit" class="form-label">Price Per Unit</label>
+                <input type="text" class="form-control" id="price_per_unit" name="price_per_unit" value="{{ material.price_per_unit}}">
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ material.quantity }}">
+            </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Update Material</button>
                 <a href="{{ url_for('materials') }}" class="btn btn-secondary">Cancel</a>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Add Issue Indent - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Add Issue Indent</h1>
+        
+        <form method="POST">
+        
+            <div class="mb-3">
+                <label for="material_id" class="form-label">Material</label>
+                <select class="form-select" id="material_id" name="material_id" required>
+                    <option value="">Select Material</option>
+                    {% for material in materials %}
+                    <option value="{{ material.material_id }}">{{ material.material_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity Requested</label>
+                <input type="number" step="0.01" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <select class="form-select" id="remarks" name="remarks" required>
+                    <option value="PENDING">PENDING</option>
+                    <option value="APPROVED">APPROVED</option>
+                    <option value="ISSUED">ISSUED</option>
+                    <option value="CANCELLED">CANCELLED</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="issued_to" class="form-label">Issued To</label>
+                <input type="text" class="form-control" id="issued_to" name="issued_to" required>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Issue Indent</button>
+                <a href="{{ url_for('issue_materials') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

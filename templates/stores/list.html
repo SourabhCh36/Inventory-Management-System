@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Stores - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Stores</h1>
+    <a href="{{ url_for('add_store') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Store
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Store ID</th>
+                <th>Store Name</th>
+                <th>Location</th>
+                <th>Store Head</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores %}
+            <tr>
+                <td>{{ store.store_id }}</td>
+                <td>{{ store.store_name }}</td>
+                <td>{{ store.location }}</td>
+                <td>{{ store.store_head }}</td>
+                <td>{{ store.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    <a href="{{ url_for('edit_store',store_id=store.store_id) }}"class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{{ url_for('delete_store', store_id=store.store_id) }}"class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

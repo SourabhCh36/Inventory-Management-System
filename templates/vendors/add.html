@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Add Vendor - Inventory Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Add Vendor</h1>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label for="vendor_id" class="form-label">Vendor ID</label>
+                <input type="text" class="form-control" id="vendor_id" name="vendor_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="vendor_name" class="form-label">Vendor Name</label>
+                <input type="text" class="form-control" id="vendor_name" name="vendor_name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="PAN_Number" class="form-label">PAN_Number</label>
+                <input type="text" class="form-control" id="PAN_Number" name="PAN_Number">
+            </div>
+            
+            <div class="mb-3">
+                <label for="mobile_number " class="form-label">Mobile</label>
+                <input type="text" class="form-control" id="mobile_number" name="mobile_number" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="created_at" class="form-label">Created Date</label>
+                <input type="date" class="form-control" id="created_at" name="created_at" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="updated_at" class="form-label">Updated Date</label>
+                <input type="date" class="form-control" id="updated_at" name="updated_at" required>
+            </div>
+            
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Vendor</button>
+                <a href="{{ url_for('vendors') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

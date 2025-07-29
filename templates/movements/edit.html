@@ -6,21 +6,33 @@
 <div class="row">
     <div class="col-md-8">
         <h1>Edit Movement</h1>
-        
+
         <form method="POST">
             <div class="mb-3">
-                <label for="movement_id" class="form-label">Movement ID</label>
-                <input type="text" class="form-control" id="movement_id" name="movement_id" value="{{ movement.movement_id }}" readonly>
+                <label for="tansaction_id" class="form-label">Transaction ID</label>
+                <input type="text" class="form-control" id="tansaction_id" name="tansaction_id" value="{{ movement.tansaction_id }}" readonly>
             </div>
 
             <div class="mb-3">
-                <label for="material_id" class="form-label">Material Id</label>
-                <input type="text" class="form-control" id="material_id" name="material_id" value="{{ movement.material_id }}" required>
+                <label for="material_id" class="form-label">Material</label>
+                <select class="form-select" id="material_id" name="material_id" required>
+                    {% for material in materials %}
+                    <option value="{{ material.material_id }}" {% if movement.material_id == material.material_id %}selected{% endif %}>
+                        {{ material.material_name }}
+                    </option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="mb-3">
-                <label for="store_id" class="form-label">Store ID</label>
-                <input type="text" class="form-control" id="store_id" name="store_id" value="{{ movement.store_id }}" required>
+                <label for="store_id" class="form-label">Store</label>
+                <select class="form-select" id="store_id" name="store_id" required>
+                    {% for store in stores %}
+                    <option value="{{ store.store_id }}" {% if movement.store_id == store.store_id %}selected{% endif %}>
+                        {{ store.store_name }}
+                    </option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="mb-3">
@@ -30,17 +42,20 @@
 
             <div class="mb-3">
                 <label for="movement_type" class="form-label">Movement Type</label>
-                <input type="text" class="form-control" id="movement_type" name="movement_type" value="{{ movement.movement_type }}" required>
+                <select class="form-select" id="movement_type" name="movement_type" required>
+                    <option value="inward" {% if movement.movement_type == 'inward' %}selected{% endif %}>Inward</option>
+                    <option value="outward" {% if movement.movement_type == 'outward' %}selected{% endif %}>Outward</option>
+                </select>
             </div>
 
             <div class="mb-3">
-                <label for="movement_date" class="form-label">Movement Date</label>
-                <input type="date" class="form-control" id="movement_date" name="movement_date" value="{{ movement.movement_date.strftime('%Y-%m-%d') }}" required>
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea class="form-select" id="remarks" name="remarks" rows="3">{{ movement.remarks }}</textarea>
             </div>
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Update Movement</button>
-                <a href="{{ url_for('view_movements') }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{ url_for('movements') }}" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
     </div>

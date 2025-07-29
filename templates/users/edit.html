@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Edirt User Inventory Management System{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit User</h2>
+    <form method="POST" action="{{ url_for('edit_user', id=user.id) }}">
+        
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" id="role" name="role" required>
+                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                <option value="material_user" {% if user.role == 'material_user' %}selected{% endif %}>Material User</option>
+                <option value="movement_user"{% if user.role == 'movements_user' %}selected{% endif %}>Movement User</option>
+                <option value="purchase_user"{% if user.role == 'purchase_user' %}selected{% endif %}>Purchase User</option>
+                <option value="indent_user"{% if user.role == 'indent_user' %}selected{% endif %}>Indent User</option>
+                <option value="vendor_user"{% if user.role == 'vendor_user' %}selected{% endif %}>Vendor User</option>
+                <option value="store_user"{% if user.role == 'store_user' %}selected{% endif %}>Store User</option>
+                <option value="stock_user"{% if user.role == 'stock_user' %}selected{% endif %}>Stock User</option>
+            </select>
+        </div>
+        <button tupe="submot" class="btn btn-success">
+            <i class="fas fa-save"></i> Updated User
+        </button>
+        <a href="{{ url_for('users')}}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
