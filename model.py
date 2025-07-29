@@ -13,7 +13,8 @@ class MaterialList(db.Model):
     category=db.Column(db.String(200),nullable=False)
     created_at=db.Column(db.DateTime, default=datetime.utcnow)
     updated_at=db.Column(db.DateTime, onupdate=datetime.utcnow)
-   
+    is_active = db.Column(db.Boolean, default=True)
+
 class User(db.Model):
     __tablename__= 'users'
     id=db.Column(db.Integer, primary_key=True)

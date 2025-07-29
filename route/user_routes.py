@@ -20,6 +20,7 @@ def add_user():
         username = request.form['username']
         password = request.form['password']
         role = request.form['role']
+        email = request.form.get('email', '')
 
         # Check if user already exists
         existing_user = User.query.filter_by(username=username).first()
@@ -31,7 +32,8 @@ def add_user():
         user = User(
             username=username,
             password_hash=generate_password_hash(password),
-            role=role
+            role=role,
+            email=email
         )
         db.session.add(user)
         db.session.commit()

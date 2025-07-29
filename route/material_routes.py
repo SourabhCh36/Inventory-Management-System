@@ -9,7 +9,7 @@ from flask import Flask, redirect,render_template,request,url_for,flash
 @app.route('/materials')
 @role_required(['admin','material_user'])
 def materials():
-    materials=MaterialList.query.all()
+    materials=MaterialList.query.filter_by(is_active=True).all()
     return render_template('materials/list.html',materials=materials)
 
 @app.route('/materials/add',methods=['GET', 'POST'])
@@ -23,7 +23,7 @@ def add_material():
         price_per_unit = request.form['price_per_unit']
         category=request.form['category']
         description = request.form.get('description', '')
-
+        
         new_material = MaterialList(
             material_id=material_id,
             material_name=material_name,
@@ -83,7 +83,7 @@ def edit_material(material_id):
 @role_required(['admin','material_user'])
 def delete_material(material_id):
     material=MaterialList.query.get_or_404(material_id)
-    db.session.delete(material)
+    material.is_active = False  # Soft delete
     db.session.commit()
     flash('Material deleted successfully!', 'success')
     return redirect(url_for('materials'))
